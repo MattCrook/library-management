@@ -55,4 +55,4 @@ def list_libraries(request):
             """,
             (form_data['title'], form_data['address']))
 
-        return redirect(reverse('libraryapp:books'))
+        return redirect(reverse('libraryapp:library'))

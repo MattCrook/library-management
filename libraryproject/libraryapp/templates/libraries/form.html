@@ -11,8 +11,16 @@
 <body>
   {% block content %}
 
-    <h1>Different Libraries</h1>
+    <h2>Add A New Library</h2>
 
+       {% if library.id is not None %}
+           <form action="{% url 'libraryapp:library' library.id %}" method="post">{% csrf_token %}
+
+       {% else %}
+
+            <form action="{% url 'libraryapp:libraries' %}" method="post">{% csrf_token %}
+
+       {% endif %}
 
         <fieldset>
             <label for="title">Library Name: </label>
