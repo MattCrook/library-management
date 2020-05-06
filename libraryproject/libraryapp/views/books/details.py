@@ -7,6 +7,31 @@ from libraryapp.models import model_factory
 from ..connection import Connection
 
 
+def create_book(cursor, row):
+    _row = sqlite3.Row(cursor, row)
+
+    book = Book()
+    book.id = _row["book_id"]
+    book.author = _row["author"]
+    book.isbn = _row["isbn"]
+    book.title = _row["title"]
+    book.year_published = _row["year_published"]
+
+    librarian = Librarian()
+    librarian.id = _row["librarian_id"]
+    librarian.first_name = _row["first_name"]
+    librarian.last_name = _row["last_name"]
+
+    library = Library()
+    library.id = _row["library_id"]
+    library.title = _row["library_name"]
+
+    book.librarian = librarian
+    book.location = library
+
+    return book
+
+
 def get_book(book_id):
     with sqlite3.connect(Connection.db_path) as conn:
         conn.row_factory = create_book
@@ -64,10 +89,10 @@ def book_details(request, book_id):
                 WHERE id = ?
                 """,
                 (
-                    form_data['title'], form_data['author'],
-                    form_data['isbn'], form_data['year_published'],
-                    form_data["location"], book_id,
-                ))
+                  form_data['title'], form_data['author'],
+                  form_data['isbn'], form_data['year_published'],
+                  form_data["location"], book_id,
+                                  ))
 
             return redirect(reverse('libraryapp:books'))
 
@@ -85,27 +110,3 @@ def book_details(request, book_id):
                 """, (book_id,))
 
             return redirect(reverse('libraryapp:books'))
-
-def create_book(cursor, row):
-    _row = sqlite3.Row(cursor, row)
-
-    book = Book()
-    book.id = _row["book_id"]
-    book.author = _row["author"]
-    book.isbn = _row["isbn"]
-    book.title = _row["title"]
-    book.year_published = _row["year_published"]
-
-    librarian = Librarian()
-    librarian.id = _row["librarian_id"]
-    librarian.first_name = _row["first_name"]
-    librarian.last_name = _row["last_name"]
-
-    library = Library()
-    library.id = _row["library_id"]
-    library.title = _row["library_name"]
-
-    book.librarian = librarian
-    book.location = library
-
-    return book

@@ -9,4 +9,4 @@ from .books.form import book_form, book_edit_form
 from .libraries.form import library_form, library_edit_form
 from .libraries.details import library_details
 from .libraries.details import get_library
-# from .librarians.form import librarian_form
+from .librarians.form import librarian_form

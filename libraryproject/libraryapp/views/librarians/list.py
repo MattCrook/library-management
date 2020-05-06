@@ -47,17 +47,17 @@ def list_librarians(request):
         }
         return render(request, template_name, context)
 
-    # elif request.method == 'POST':
-    #     form_data = request.POST
-    #     with sqlite3.connect(Connection.db_path) as conn:
-    #         db_cursor = conn.cursor()
-    #         db_cursor.execute("""
-    #         INSERT INTO libraryapp_librarian
-    #         (
-    #             location_id, user_id
-    #         )
-    #         VALUES (?, ?)
-    #         """,
-    #         (form_data['location_id'], request.user.librarian.id))
+    elif request.method == 'POST':
+        form_data = request.POST
+        with sqlite3.connect(Connection.db_path) as conn:
+            db_cursor = conn.cursor()
+            db_cursor.execute("""
+            INSERT INTO libraryapp_librarian
+            (
+                location_id, user_id
+            )
+            VALUES (?, ?)
+            """,
+            (form_data['location_id'], request.user.librarian.id))
 
-    #     return redirect(reverse('libraryapp:books'))
+        return redirect(reverse('libraryapp:books'))

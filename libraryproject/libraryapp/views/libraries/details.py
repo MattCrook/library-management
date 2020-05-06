@@ -44,7 +44,7 @@ def library_details(request, library_id):
                 (
                     form_data['title'], form_data['address'], library_id
                 ))
-                return redirect(reverse('libraryapp: libraries'))
+                return redirect(reverse('libraryapp:libraries'))
             if (
                 "actual_method" in form_data
                 and form_data['actual_method'] == 'DELETE'
@@ -55,4 +55,4 @@ def library_details(request, library_id):
                         DELETE FROM libraryapp_library
                         WHERE id = ?
                     """ , (library_id))
-                return redirect(reverse('libraryapp: libraries'))
+                return redirect(reverse('libraryapp:libraries'))

@@ -8,7 +8,7 @@ from .library import Library
 class Librarian(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     location = models.ForeignKey(
-        Library, related_name="librarians",
+        Library, related_name="librarian",
         null=True,  # Makes column nullable in DB
         blank=True,  # Allows blank value on objects
         on_delete=models.CASCADE)

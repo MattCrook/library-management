@@ -21,7 +21,7 @@ def book_list(request):
 
             db_cursor = conn.cursor()
             db_cursor.execute("""
-            select
+            SELECT
                 b.id,
                 b.title,
                 b.isbn,
@@ -29,7 +29,7 @@ def book_list(request):
                 b.year_published,
                 b.librarian_id,
                 b.location_id
-            from libraryapp_book b
+            FROM libraryapp_book b
             """)
 
             all_books = db_cursor.fetchall()
@@ -74,6 +74,6 @@ def book_list(request):
             """,
             (form_data['title'], form_data['author'],
                 form_data['isbn'], form_data['year_published'],
-                request.user.librarian.id, form_data["location"]))
+                form_data["location"], request.user.librarian.id))
 
         return redirect(reverse('libraryapp:books'))
