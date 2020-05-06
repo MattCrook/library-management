@@ -1,0 +1,37 @@
+{% extends 'shared/base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Library</title>
+</head>
+
+<body>
+  {% block content %}
+
+    <h1>Different Libraries</h1>
+
+
+        <fieldset>
+            <label for="title">Library Name: </label>
+            <input id="title" type="text" name="title" value="{{ library.title }}">
+        </fieldset>
+        <fieldset>
+            <label for="author">Address: </label>
+            <input id="author" type="text" name="address" value="{{ library.address }}">
+        </fieldset>
+
+        {% if library.id is not None %}
+            <input type="hidden" name="actual_method" value="PUT">
+            <input type="submit" value="Update" />
+        {% else %}
+            <input type="submit" value="Create" />
+        {% endif %}
+
+    </form>
+    {% endblock %}
+</body>
+
+</html>

@@ -32,8 +32,9 @@ def book_form(request):
         context = {
             'all_libraries': libraries
         }
+        return render(request, template, context)
 
-# get_ books is from views/ 
+# get_ books is from views/
 @login_required
 def book_edit_form(request, book_id):
 

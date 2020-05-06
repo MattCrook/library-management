@@ -6,7 +6,6 @@ from libraryapp.models import model_factory
 from django.shortcuts import redirect
 from django.urls import reverse
 
-
 # LOGIN_REDIRECT_URL set in settings.py file. Login_required is django decorator in which we specified the redirect url in settings.py
 from django.contrib.auth.decorators import login_required
 
