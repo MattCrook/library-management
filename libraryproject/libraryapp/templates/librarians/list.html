@@ -12,9 +12,11 @@
 
     <h1>Librarians</h1>
 
+    {% comment %} <a href="{% url 'libraryapp:librarian_form' %}">Add New Librarian</a> {% endcomment %}
+
     <ol>
     {% for librarian in all_librarians %}
-        <li>{{ librarian.first_name }} {{ librarian.last_name }}</li>
+        <li>{{ librarian.first_name }} {{ librarian.last_name }}, Location </li>
     {% endfor %}
     </ol>
     {% endblock %}

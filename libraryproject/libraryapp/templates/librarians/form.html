@@ -1,4 +1,4 @@
-{% load static %}
+{% comment %} {% load static %}
 <!DOCTYPE html>
 <html>
 
@@ -8,30 +8,23 @@
 </head>
 
 <body>
-    <h1>Add New Book</h1>
+    <h1>Add New Librarian</h1>
 
-    {% if book.id is not None %}
-        <form action="{% url 'libraryapp:book' book.id %}" method="post">
+    {% if librarian.id is not None %}
+        <form action="{% url 'libraryapp:librarian' librarian.id %}" method="post">
     {% else %}
-        <form action="{% url 'libraryapp:books' %}" method="post">
+        <form action="{% url 'libraryapp:librarian' %}" method="post">
     {% endif %}
         {% csrf_token %}
         <fieldset>
-            <label for="title">Title: </label>
+            <label for="title">First Name: </label>
             <input id="title" type="text" name="title" value="{{ book.title }}">
         </fieldset>
         <fieldset>
-            <label for="author">Author: </label>
+            <label for="author">Last Name: </label>
             <input id="author" type="text" name="author" value="{{ book.author }}">
         </fieldset>
-        <fieldset>
-            <label for="year_published">Year of publication: </label>
-            <input id="year_published" type="number" name="year_published" value="{{ book.year_published }}">
-        </fieldset>
-        <fieldset>
-            <label for="isbn">ISBN: </label>
-            <input id="isbn" type="text" name="isbn" value="{{ book.isbn }}">
-        </fieldset>
+
         <fieldset>
             <label for="location">Library: </label>
             <select id="location" type="text" name="location">
@@ -42,7 +35,7 @@
             </select>
         </fieldset>
 
-        {% if book.id is not None %}
+        {% if librarian.id is not None %}
             <input type="hidden" name="actual_method" value="PUT">
             <input type="submit" value="Update" />
         {% else %}
@@ -52,4 +45,4 @@
     </form>
 </body>
 
-</html>
+</html> {% endcomment %}
