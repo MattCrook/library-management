@@ -58,6 +58,6 @@ def list_librarians(request):
             )
             VALUES (?, ?)
             """,
-            (form_data['location_id'], request.user.librarian.id))
+            (form_data['location'], request.user.librarian.id))
 
-        return redirect(reverse('libraryapp:books'))
+        return redirect(reverse('libraryapp:librarians'))

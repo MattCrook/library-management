@@ -16,7 +16,12 @@
 
     <ol>
     {% for librarian in all_librarians %}
-        <li>{{ librarian.first_name }} {{ librarian.last_name }}, Location </li>
+        <li>
+            <a href="{% url 'libraryapp:librarian' librarian.id %}">
+                {{ librarian.library_name }}, details{{ librarian.library_address}}
+            </a>
+            {{ librarian.first_name }} {{ librarian.last_name }}
+        </li>
     {% endfor %}
     </ol>
     {% endblock %}

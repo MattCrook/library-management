@@ -25,7 +25,7 @@ def get_librarians():
                 JOIN libraryapp_library ON library.address = l.location_id
                 JOIN auth_user u on l.user_id = u.id
                 """)
-        return db_cursor.fetchone()
+        return db_cursor.fetchall()
 
 
 @login_required

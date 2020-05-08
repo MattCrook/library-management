@@ -1,0 +1,27 @@
+{% extends 'shared/base.html' %}
+{% load static %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'styles/librarians.css' %}" />
+{% endblock %}
+
+{% block content %}
+<body>
+    <section id="librarian-details">
+        <h2>Librarian: {{ librarian.first_name }}  {{ librarian.last_name }}</h2>
+        <div>At Location: {{ librarian.library.title }}</div>
+        <div>Address: {{ librarian.library.address}}</div>
+        <div>Username: {{librarian.username}}</div>
+
+    </section>
+
+    <section id="book-actions" style="display:flex;">
+        <form action="{% url 'libraryapp:librarian' librarian.id %}" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="actual_method" value="DELETE">
+            <button>Delete</button>
+        </form>
+
+    </section>
+
+</body>
+{% endblock %}
